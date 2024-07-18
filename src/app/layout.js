@@ -1,6 +1,6 @@
-import { Prompt } from 'next/font/google'
+import { Prompt } from "next/font/google"
 import { Aside } from "@/components/Aside";
-import './globals.css'
+import "./globals.css"
 
 export const metadata = {
   title: "Alura Code Connect",
