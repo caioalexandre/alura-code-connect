@@ -15,10 +15,22 @@ const post = {
   }
 };
 
-export default function Home() {
+async function getPosts() {
+  const response = await fetch('http://localhost:3042/posts');
+
+  if (!response.ok) {
+    alert('Woops, something went wrong!');
+  }
+
+  return response.json();
+};
+
+export default async function Home() {
+  const posts = await getPosts();
+
   return (
     <main>
-      <CardPost post={post} />
+      {posts.map(post => <CardPost post={post} />)}
     </main>
   );
 }
