@@ -1,6 +1,8 @@
+import { CardPost } from "@/components/CardPost";
 import logger from "@/logger";
 import { remark } from "remark";
 import html from "remark-html";
+import styles from "./page.module.css";
 
 async function getPostBySlug (slug) {
   const url = `http://localhost:3042/posts?slug=${slug}`;
@@ -36,10 +38,15 @@ const PagePost = async ({ params }) => {
   const post = await getPostBySlug(params.slug);
 
   return (
-    <>
-      <h1 style={{ color: 'white' }}>{post.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: post.markdown }} style={{ padding: '16px', background: 'white' }} />
-    </>
+    <div>
+      <CardPost post={post} highlight />
+
+      <h3 className={styles.subtitle}>Código:</h3>
+
+      <div className={styles.code}>
+        <div dangerouslySetInnerHTML={{ __html: post.markdown }} />
+      </div>
+    </div>
   );
 };
 
